@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+BASEIMAGE=`cat /data/home/$USER.image`
+CIDFILE=/tmp/$USER.cid
+DOCKER="/usr/bin/docker -H tcp://127.0.0.1:4342"
+
+$DOCKER run -i -t -v $HOME:/data -e HOME=/data -cidfile $CIDFILE $BASEIMAGE /bin/bash
+$DOCKER rm `cat $CIDFILE`
+rm $CIDFILE

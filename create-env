@@ -1,0 +1,29 @@
+#!/bin/bash
+
+USERNAME=$1
+FROM=$2
+KEY=${*:3}
+HOMES=/data/home
+HOME=$HOMES/$USERNAME
+
+function usage {
+    echo "Usage: create-env <USER> <BASEIMAGE> <SSH KEY>"
+    echo
+    echo "Note: BASEIMAGE can by any Docker image identifier"
+    echo "      SSH KEY should be entire contents of ~/.ssh/id_rsa.pub"
+    echo
+    echo "Example:"
+    echo "   create-env myproject ubuntu \`cat ~/.ssh/id_rsa.pub\`"
+}
+
+if [ "" == "$1" ] || [ "--help" == "$1" ]; then
+    usage
+    exit
+fi
+
+useradd -d $HOME -m -s /usr/bin/dshell $USERNAME
+mkdir -p $HOME/.ssh
+echo $KEY > $HOME/.ssh/authorized_keys
+echo $FROM > $HOMES/$USERNAME.image
+
+cp /etc/passwd /etc/shadow /data/

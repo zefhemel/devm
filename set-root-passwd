@@ -1,0 +1,4 @@
+#!/bin/bash
+
+passwd
+cp /etc/shadow /etc/passwd /data/
