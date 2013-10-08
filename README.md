@@ -21,14 +21,15 @@ You can change the root password by running:
 
     ssh root@localhost -p2222 set-root-passwd
 
-To create a new dev environment (from out
+To create a new dev environment:
 
     ssh root@localhost -p2222 create-env <USER> <BASEIMAGE> <SSH KEY>
 
 Notes:
+
 * BASEIMAGE can by any Docker image identifier
 * SSH KEY should be entire contents of ~/.ssh/id_rsa.pub"
 
-Example (to create a project named 'myproject' based on the 'ubuntu' image):
+Example (to create a project named 'myproject' based on the 'zefhemel/base-dev' image):
 
-   ssh root@localhost -p2222 create-env myproject ubuntu `cat ~/.ssh/id_rsa.pub`
+    ssh root@localhost -p2222 create-env myproject zefhemel/base-dev `cat ~/.ssh/id_rsa.pub`
