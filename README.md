@@ -33,3 +33,7 @@ Notes:
 Example (to create a project named 'myproject' based on the 'zefhemel/base-dev' image):
 
     ssh root@localhost -p2222 create-env myproject zefhemel/base-dev `cat ~/.ssh/id_rsa.pub`
+
+You can then login into it using:
+
+    ssh myproject@localhost -p2222
